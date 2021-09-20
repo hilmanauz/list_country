@@ -106,6 +106,12 @@ export default {
   },
   methods: {
     goToDetails(item) {
+      const options = {
+        duration: 300,
+        offset: 0,
+        easing:'easeInOutCubic'
+      }
+      this.$vuetify.goTo(0, options)
       this.$router.push({path: '/country', query: { name: item.name}})
     }
   }

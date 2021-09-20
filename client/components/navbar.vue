@@ -28,14 +28,14 @@
       elevate-on-scroll
       v-show="isAuth"
     >
-      <img src="/countrypedia.webp" alt="country" width="55px"/>
+      <img src="/countrypedia.webp" alt="country" :width="propWidthImg"/>
       <v-toolbar-title v-text="title" class="font-weight-bold clickable" @click="goToHome"/>
       <v-spacer></v-spacer>
       
       <v-menu offset-y open-on-hover>
         <template v-slot:activator="{ on, attrs }">
           <v-btn 
-            class="mx-3"
+            class="mx-0 mx-lg-3"
             elevation="0"
             v-bind="attrs"
             v-on="on"
@@ -151,6 +151,10 @@ export default {
       if(this.$route.path === '/login') return false
       else if(this.$route.path === '/' || this.$route.path === '/country') return true
     },
+    propWidthImg() {
+      if(this.$vuetify.breakpoint.name !== 'xs') return '55px'
+      else return '40px'
+    }
   },
   created() {
     if(this.$route.path === '/' || this.$vuetify.breakpoint.name === 'lg' || this.$vuetify.breakpoint.name === 'xl') this.drawer = true
